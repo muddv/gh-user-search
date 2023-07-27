@@ -5,7 +5,6 @@ import { searchResAtom, searchErrAtom } from "../stores/searchRes"
 export function SearchResults() {
   const searchResults = useAtomValue(searchResAtom)
   const searchError = useAtomValue(searchErrAtom)
-  console.log(searchError)
   return (
     <>
       {(!searchResults[0] && !searchError) && <div>Enter username to start searching</div>}

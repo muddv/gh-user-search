@@ -16,6 +16,10 @@
 - [ ] trim username before sending req
 - [x] move search atom to stores
 - [ ] handle different http res codes
-- [ ] find out if there is a page 0
+- [x] find out if there is a page 0: THERE IS NO PAGE 0
 - [ ] display search loader
 - [ ] clean up `handleSearch()` function
+- [ ] sort the users by repos
+- [ ] add page number and perpage options
+- [ ] write tests
+
