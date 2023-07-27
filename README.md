@@ -12,3 +12,10 @@
 - При клике на элемент - открываются подробности (как и какие на усмотрение разработчика).
 - Реализовать 3 юнит-теста на функционал. 
 
+# TODO
+- [ ] trim username before sending req
+- [x] move search atom to stores
+- [ ] handle different http res codes
+- [ ] find out if there is a page 0
+- [ ] display search loader
+- [ ] clean up `handleSearch()` function
