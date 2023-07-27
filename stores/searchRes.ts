@@ -1,6 +1,6 @@
 import { atom } from "jotai"
 
-type GHUser = {
+export type GHUser = {
   avatar_url: string,
   events_url: string,
   followers_url: string,

@@ -19,7 +19,11 @@
 - [x] find out if there is a page 0: THERE IS NO PAGE 0
 - [ ] display search loader
 - [ ] clean up `handleSearch()` function
-- [ ] sort the users by repos
+- [x] sort the users by repos
+- [ ] make ui option for desc vs asc
 - [ ] add page number and perpage options
 - [ ] write tests
+- [ ] prevent "Show more" for the last result page
+- [ ] conver "Show more" to pages
+- [ ] trim GHUser fields to take less memory
 

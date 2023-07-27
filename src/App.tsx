@@ -11,21 +11,21 @@ export function App() {
   const [searchRes, setSearchRes] = useAtom(searchResAtom)
   const setSearchErr = useSetAtom(searchErrAtom)
   async function handleSearch(query: string) {
-    console.log(query, page)
-    if (query === "") {
-      setSearchRes([])
-      return
-    }
-    q = query
-    let res = await sendRequest(query, page)
-    page++
-    let data = await res.json()
-    if (!res.ok) { 
-      setSearchErr(data.message)
-      setSearchRes([])
-      return 
-    }
-    data.items !== undefined ? setSearchRes(searchRes.concat(data.items)) : setSearchRes([])
+     if (query === "") {
+       setSearchRes([])
+       return
+     }
+     q = query
+     let data = await sendRequest(query, page)
+     page++
+     if (data.message) { 
+       setSearchErr(data.message)
+       setSearchRes([])
+       return 
+     }
+     data.items !== undefined ? setSearchRes(searchRes.concat(data.items)) : setSearchRes([])
+    return
+    // ______________________
     // console.log(data.items)
     // console.log('req')
     // console.log(new Date().getTime())
