@@ -19,11 +19,25 @@ export type GHUser = {
   starred_url: string,
   subscriptions_url: string,
   type: string,
-  url: string
+  url: string,
 }
+
+type GHUserDetails = {
+  name: string | null,
+  company: string | null,
+  blog: string | null,
+  location: string | null,
+  email: string | null,
+  bio: string | null,
+  public_repos: number,
+  followers: number,
+  following: number,
+  created_at: string | null
+}
+
+export type GHUserWithDetails = GHUser & GHUserDetails
 
 export const searchResAtom = atom<GHUser[]>([])
 
 export const searchErrAtom = atom<String>('')
-
 

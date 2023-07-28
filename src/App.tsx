@@ -12,7 +12,6 @@ export function App() {
   const [searchRes, setSearchRes] = useAtom(searchResAtom)
   const setSearchErr = useSetAtom(searchErrAtom)
   async function handleSearch(query: string) {
-    console.log(query)
      if (query === "") {
        setSearchRes([])
        return

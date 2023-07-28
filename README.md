@@ -28,3 +28,10 @@
 - [ ] trim GHUser fields to take less memory
 - [ ] There must not be any duplicates in state
 - [ ] add loader before users are added
+- [ ] CHANGE SORTING WHEN ASC VS DESC IS TOGGLED
+- [ ] use native res for avis
+- [ ] HANDLE fetch errors
+- [ ] display api errors correctly
+- [ ] prevent getDetails() req several times for same user
+- [ ] handle error response for user details
+- [ ] change color of icons
