@@ -35,3 +35,6 @@
 - [ ] prevent getDetails() req several times for same user
 - [ ] handle error response for user details
 - [ ] change color of icons
+- [ ] correct `Function` type in debounce.ts
+- [ ] do i need to a function in GHUser.tsx when setting state?
+- [ ] convert SearchRes + SearchErr to an intersection type
