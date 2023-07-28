@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { useSetAtom } from "jotai";
 
-import { searchErrAtom, searchResAtom } from "../stores/searchRes";
+import { searchResAtom } from "../stores/searchRes";
 import { sendRequest } from "../lib/sendRequest";
 import { debounce } from "../lib/debounce";
 import { SearchResults } from "./SearchResulsts";
@@ -8,24 +9,33 @@ import { SearchResults } from "./SearchResulsts";
 let q = "";
 let page = 1;
 let desc = true;
+
 export function App() {
   const setSearchRes = useSetAtom(searchResAtom);
-  const setSearchErr = useSetAtom(searchErrAtom);
+  const [isLoading, setLoading] = useState(false);
 
   async function handleSearch(query: string) {
+    setLoading(true);
     if (query === "") {
-      setSearchRes([]);
+      setSearchRes({ users: [], error: undefined });
+      setLoading(false);
       return;
     }
     q = query;
     const data = await sendRequest(query, page, desc);
-    page++;
-    if (data.message) {
-      setSearchErr(data.message);
-      setSearchRes([]);
+    //page++;
+    if (typeof data === "string") {
+      setSearchRes({ users: [], error: data });
+      setLoading(false);
       return;
     }
-    data.items !== undefined ? setSearchRes(data.items) : setSearchRes([]);
+    if (!data.items[0]) {
+      console.log("no items");
+      setSearchRes({ users: [], error: "No users match your request" });
+      setLoading(false);
+    }
+    setSearchRes({ users: data.items, error: undefined });
+    setLoading(false);
     return;
   }
 
@@ -46,7 +56,6 @@ export function App() {
         <fieldset
           onChange={() => {
             desc = !desc;
-            console.log(desc);
           }}
           className="flex flex-col"
         >
@@ -67,7 +76,7 @@ export function App() {
           </div>
         </fieldset>
       </form>
-      <SearchResults />
+      {!isLoading ? <SearchResults /> : <div>Loading...</div>}
       <button
         className="border-2 border-black hover:bg-slate-300 active:bg-slate-400"
         onClick={() => {

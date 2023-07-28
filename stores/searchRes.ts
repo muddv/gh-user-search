@@ -37,6 +37,9 @@ type GHUserDetails = {
 
 export type GHUserWithDetails = GHUser & GHUserDetails;
 
-export const searchResAtom = atom<GHUser[]>([]);
+type SearchResults = {
+  users: GHUser[] | GHUserWithDetails[];
+  error?: string;
+};
 
-export const searchErrAtom = atom<String>("");
+export const searchResAtom = atom<SearchResults>({ users: [] });

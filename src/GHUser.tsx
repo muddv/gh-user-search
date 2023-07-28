@@ -60,26 +60,49 @@ function Details(props: GHUserWithDetails) {
   );
 }
 
+type DetailsErrorProps = {
+  callback: () => void;
+};
+
+function DetailsError(props: DetailsErrorProps) {
+  return (
+    <div className="text-rose-400">
+      Error getting details,{" "}
+      <button
+        onClick={() => {
+          props.callback();
+        }}
+      >
+        retry
+      </button>
+    </div>
+  );
+}
+
 export function GHUser(props: GHUser) {
   const [isExpanded, setExpanded] = useState(false);
   const [details, setDetails] = useState<GHUserWithDetails | undefined>();
   const [isLoading, setLoading] = useState(false);
-  async function handleClick() {
-    // TODO do i need to a function here?
-    setExpanded(() => {
-      return !isExpanded;
-    });
+  const [errored, setErrored] = useState(false);
+  async function loadDetails() {
+    if (errored) setErrored(false);
     if (isExpanded) return;
     setLoading(true);
     const dets = await getDetails(props.url);
     //let dets = await getDets()
     setLoading(false);
+    if (typeof dets === "string") {
+      setErrored(true);
+    }
     setDetails(dets);
     //setDetails({ ...props, ...dets as any })
   }
   return (
     <li
-      onClick={handleClick}
+      onClick={() => {
+        setExpanded(!isExpanded);
+        loadDetails();
+      }}
       className="m-5 flex w-1/3 cursor-pointer gap-5 rounded border-2 border-black p-2 hover:bg-slate-300"
     >
       <img
@@ -88,7 +111,7 @@ export function GHUser(props: GHUser) {
         className="h-10 w-10"
         src={props.avatar_url}
       />
-      <div className="flex flex-col">
+      <div className="flex flex-col" onClick={(e) => e.stopPropagation()}>
         <a
           href={props.html_url}
           className="w-fit text-xl underline hover:no-underline"
@@ -100,9 +123,10 @@ export function GHUser(props: GHUser) {
         </div>
         {isLoading && <div>Loading...</div>}
 
-        {isExpanded && !isLoading && (
+        {isExpanded && !isLoading && !errored && (
           <Details {...(details as GHUserWithDetails)} />
         )}
+        {isExpanded && errored && <DetailsError callback={loadDetails} />}
       </div>
     </li>
   );

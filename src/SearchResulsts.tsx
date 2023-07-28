@@ -1,24 +1,23 @@
 import { useAtomValue } from "jotai";
 
-import { searchResAtom, searchErrAtom } from "../stores/searchRes";
+import { searchResAtom } from "../stores/searchRes";
 import { GHUser } from "./GHUser";
 
 export function SearchResults() {
   const searchResults = useAtomValue(searchResAtom);
-  const searchError = useAtomValue(searchErrAtom);
   return (
     <>
-      {!searchResults[0] && !searchError && (
+      {!searchResults.users[0] && !searchResults.error && (
         <div>Enter username to start searching</div>
       )}
-      {searchResults[0] && (
+      {searchResults.users[0] && (
         <ul className="flex w-screen flex-col items-center">
-          {searchResults.map((u) => (
+          {searchResults.users.map((u) => (
             <GHUser {...u} key={u.id} />
           ))}
         </ul>
       )}
-      <div className="w-56">{searchError !== "" && searchError}</div>
+      <div className="w-56">{searchResults.error && searchResults.error}</div>
     </>
   );
 }

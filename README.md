@@ -38,3 +38,4 @@
 - [ ] correct `Function` type in debounce.ts
 - [ ] do i need to a function in GHUser.tsx when setting state?
 - [ ] convert SearchRes + SearchErr to an intersection type
+- [ ] trim text fields

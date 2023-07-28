@@ -1,5 +1,8 @@
 export async function getDetails(url: string) {
-  const res = await fetch(url);
-  const data = await res.json();
+  let data;
+  const res = await fetch(url).catch((e) => {
+    data = e.toString();
+  });
+  if (!data) data = await res!.json();
   return data;
 }
