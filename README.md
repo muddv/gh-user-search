@@ -24,6 +24,7 @@
 - [ ] add page number and perpage options
 - [ ] write tests
 - [ ] prevent "Show more" for the last result page
-- [ ] conver "Show more" to pages
+- [ ] convert from "Show more" to pages
 - [ ] trim GHUser fields to take less memory
-
+- [ ] There must not be any duplicates in state
+- [ ] add loader before users are added
