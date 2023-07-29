@@ -13,29 +13,34 @@
 - Реализовать 3 юнит-теста на функционал. 
 
 # TODO
+- [ ]  stop propagation and make links in profile card?
 - [ ] trim username before sending req
 - [x] move search atom to stores
 - [ ] handle different http res codes
 - [x] find out if there is a page 0: THERE IS NO PAGE 0
-- [ ] display search loader
-- [ ] clean up `handleSearch()` function
+- [x] display search loader
+- [x] clean up `handleSearch()` function
 - [x] sort the users by repos
-- [ ] make ui option for desc vs asc
-- [ ] add page number and perpage options
+- [x] make ui option for desc vs asc
+- [ ] add page number and perpage options?
 - [ ] write tests
-- [ ] prevent "Show more" for the last result page
+- [x] prevent "Show more" for the last result page
 - [ ] convert from "Show more" to pages
-- [ ] trim GHUser fields to take less memory
+- [ ] delete GHUser fields to take less memory?
 - [ ] There must not be any duplicates in state
-- [ ] add loader before users are added
+- [x] add loader before users are added
 - [ ] CHANGE SORTING WHEN ASC VS DESC IS TOGGLED
-- [ ] use native res for avis
-- [ ] HANDLE fetch errors
+- [ ] use native res for avis?
+- [x] HANDLE fetch errors
 - [ ] display api errors correctly
 - [ ] prevent getDetails() req several times for same user
-- [ ] handle error response for user details
-- [ ] change color of icons
+- [x] handle error response for user details
+- [ ] change color of icons to slate
 - [ ] correct `Function` type in debounce.ts
 - [ ] do i need to a function in GHUser.tsx when setting state?
-- [ ] convert SearchRes + SearchErr to an intersection type
-- [ ] trim text fields
+- [x] convert SearchRes + SearchErr to an intersection type
+- [ ] trim text fields (text overflow)
+- [ ] make sure app fits 325px? width
+- [ ] remove //@ts-ignore from `<App />`
+- [ ] fix min-h-slate-100 height bg color thing
+- [ ] change svg colors

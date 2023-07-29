@@ -11,7 +11,7 @@ export function SearchResults() {
         <div>Enter username to start searching</div>
       )}
       {searchResults.users[0] && (
-        <ul className="flex w-screen flex-col items-center">
+        <ul className="flex h-full mt-[100px] flex-col items-center">
           {searchResults.users.map((u) => (
             <GHUser {...u} key={u.id} />
           ))}

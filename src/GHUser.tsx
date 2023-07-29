@@ -19,22 +19,18 @@ function getDets() {
 
 function Details(props: GHUserWithDetails) {
   return (
-    <div className="text-slate-800">
-      <div className="grid w-fit grid-cols-2 gap-y-1">
+    <div className="h-fit text-slate-900">
+      <div className="grid w-fit grid-cols-2 gap-x-5 gap-y-1">
         <div className="flex w-fit gap-1">
           <img height="24" width="24" src={repos} />
           <a href={props.html_url + "?tab=repositories"}>
-            {props.public_repos} repositories
+            {props.public_repos || "0"} repositories
           </a>
         </div>
         <div className="flex w-fit gap-1">
           <img height="24" width="24" src={followers} />
           <a href={props.html_url + "?tab=followers"}>
-            {props.followers} followers
-          </a>{" "}
-          ·{" "}
-          <a href={props.html_url + "?tab=following"}>
-            {props.following} following
+            {props.followers || "0"} followers
           </a>
         </div>
         {props.email && (
@@ -56,6 +52,7 @@ function Details(props: GHUserWithDetails) {
           </div>
         )}
       </div>
+      {props.bio && <div className="mt-1">{props.bio}</div>}
     </div>
   );
 }
@@ -103,22 +100,23 @@ export function GHUser(props: GHUser) {
         setExpanded(!isExpanded);
         loadDetails();
       }}
-      className="m-5 flex w-1/3 cursor-pointer gap-5 rounded border-2 border-black p-2 hover:bg-slate-300"
+      className="m-2 text-slate-950  bg-slate-50 flex h-fit h-fit w-[35rem] cursor-pointer gap-5 rounded border-2 border-gray-900 p-2 hover:bg-slate-300"
     >
       <img
+        alt={`${props.login}'s avatar`}
         height="25"
         width="25"
-        className="h-10 w-10"
+        className="h-10 w-10 rounded-full"
         src={props.avatar_url}
       />
-      <div className="flex flex-col" onClick={(e) => e.stopPropagation()}>
+      <div className="flex flex-col">
         <a
           href={props.html_url}
           className="w-fit text-xl underline hover:no-underline"
         >
           {props.login}
         </a>
-        <div className="text-slate-800">
+        <div className="">
           {details && details.name && details.name}
         </div>
         {isLoading && <div>Loading...</div>}
