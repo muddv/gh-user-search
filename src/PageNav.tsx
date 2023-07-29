@@ -21,7 +21,7 @@ export function PageNav() {
   const setLoading = useSetAtom(isLoadingAtom);
   const setSearchRes = useSetAtom(searchResAtom);
   function handlePageChange(page: number) {
-    if (currentSearchParams.page === page) return
+    if (currentSearchParams.page === page) return;
     currentSearchParams.page = page;
     window.scrollTo({ top: 0, left: 0 });
     useSearch(currentSearchParams, setLoading, setSearchRes, setCurrentPage);
@@ -64,7 +64,7 @@ export function PageNav() {
             }}
             className={`${
               n === currentPage
-                ? "font-semibold cursor-default"
+                ? "cursor-default font-semibold"
                 : "hover:text-slate-950 hover:underline focus:text-gray-950"
             } mx-2 text-lg `}
           >

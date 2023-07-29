@@ -44,3 +44,4 @@
 - [ ] remove //@ts-ignore from `<App />`
 - [ ] fix min-h-slate-100 height bg color thing
 - [ ] change svg colors
+
