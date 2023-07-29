@@ -8,6 +8,7 @@ import { useSearch, currentSearchParams } from "../lib/useSearch";
 import { debounce } from "../lib/debounce";
 import down from "./assets/down.svg";
 import { currentPageAtom } from "../stores/pages";
+import search from "./assets/search.svg";
 
 // no need for a generic dropdown component,
 // values can be hard coded for
@@ -109,6 +110,7 @@ export function Search() {
           <label className="mr-5 mt-2" htmlFor="username">
             Username{" "}
           </label>
+          <span className="ml-[70px] h-[45px] w-[35rem] flex rounded border-2 border-gray-800 bg-neutral-50 p-2 text-slate-950 focus:shadow-md ">
           <input
             type="text"
             name="username"
@@ -116,8 +118,10 @@ export function Search() {
             onChange={(e) => {
               debounceHandle(e.target.value);
             }}
-            className="h-[45px] w-[35rem] rounded border-2 border-gray-800 bg-neutral-50 p-2 text-slate-950 focus:shadow-md focus:outline-none"
+            className="w-[34rem] focus:outline-none bg-neutral-50"
           />
+            <button onClick={() => debounceHandle()}><img alt="search" src={search} /></button>
+          </span>
           <div className="ml-5 mt-2">
             <SortDropdown callback={changeSortOrder} />
           </div>

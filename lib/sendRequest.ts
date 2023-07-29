@@ -16,6 +16,6 @@ export async function sendRequest(
   });
   if (res && !res.ok) data = res.text;
   if (!data) data = await res!.json();
-  console.log(data);
+  if (typeof data === "function") data = "Something went wrong, try again later"
   return data;
 }
