@@ -1,16 +1,13 @@
 import { useState, useRef } from "react";
-import { useAtom, useSetAtom } from "jotai";
+import { useSetAtom } from "jotai";
 
 import { isLoadingAtom } from "../stores/isLoading";
 import { searchResAtom } from "../stores/searchRes";
-import { sendRequest } from "../lib/sendRequest";
+import { pagesAtom } from "../stores/pages";
+import { useSearch, currentSearchParams } from "../lib/useSearch";
 import { debounce } from "../lib/debounce";
-import { SearchResults } from "./SearchResulsts";
 import down from "./assets/down.svg";
-
-let q = "";
-let page = 1;
-let desc = true;
+import { currentPageAtom } from "../stores/pages";
 
 // no need for a generic dropdown component,
 // values can be hard coded for
@@ -40,7 +37,7 @@ function SortDropdown(props: SortDropdownProps) {
       Sort by repositories,
       <span className="fixed ml-1 w-32 border-2 border-slate-900">
         <button
-          className="flex w-fit  mx-auto"
+          className="mx-auto flex  w-fit"
           onClick={() => {
             setOpened(!isOpened);
           }}
@@ -78,44 +75,38 @@ function SortDropdown(props: SortDropdownProps) {
 }
 
 export function Search() {
-  const setSearchRes = useSetAtom(searchResAtom);
   const setLoading = useSetAtom(isLoadingAtom);
+  const setSearchRes = useSetAtom(searchResAtom);
+  const setPages = useSetAtom(pagesAtom);
+  const setCurrentPage = useSetAtom(currentPageAtom);
 
-  async function handleSearch(query: string) {
-    setLoading(true);
-    if (query === "") {
-      setSearchRes({ users: [], error: undefined });
-      setLoading(false);
-      return;
-    }
-    q = query;
-    const data = await sendRequest(query, page, desc);
-    //page++;
-    if (typeof data === "string") {
-      setSearchRes({ users: [], error: data });
-      setLoading(false);
-      return;
-    }
-    if (!data.items[0]) {
-      setSearchRes({ users: [], error: "No users match your request" });
-      setLoading(false);
-      return;
-    }
-    setSearchRes({ users: data.items, error: undefined });
-    setLoading(false);
-    return;
+  async function handleSearch(query?: string) {
+    currentSearchParams.page = 1;
+    query && (currentSearchParams.query = query);
+    useSearch(
+      currentSearchParams,
+      setLoading,
+      setSearchRes,
+      setCurrentPage,
+      setPages,
+    );
   }
 
   const debounceHandle = debounce(handleSearch, 250);
 
+  function changeSortOrder() {
+    currentSearchParams.desc = !currentSearchParams.desc;
+    handleSearch();
+  }
+
   return (
     <div className="">
       <form
-        className="fixed top-0 flex w-screen bg-slate-500 shadow-xl text-neutral-50 rounded-b-lg"
+        className="fixed top-0 flex w-screen rounded-b-lg bg-slate-500 text-neutral-50 shadow-xl"
         onSubmit={(e) => e.preventDefault()}
       >
         <div className="mx-auto my-5 flex">
-          <label className="mr-5 mt-2" htmlFor="usename">
+          <label className="mr-5 mt-2" htmlFor="username">
             Username{" "}
           </label>
           <input
@@ -125,17 +116,13 @@ export function Search() {
             onChange={(e) => {
               debounceHandle(e.target.value);
             }}
-            className="h-[45px] w-[35rem] bg-neutral-50 rounded border-2 border-gray-800 p-2 focus:shadow-md focus:outline-none text-slate-950"
+            className="h-[45px] w-[35rem] rounded border-2 border-gray-800 bg-neutral-50 p-2 text-slate-950 focus:shadow-md focus:outline-none"
           />
           <div className="ml-5 mt-2">
-            <SortDropdown
-              callback={() => {
-                desc = !desc;
-              }}
-            />
+            <SortDropdown callback={changeSortOrder} />
           </div>
         </div>
       </form>
-      </div>
+    </div>
   );
 }

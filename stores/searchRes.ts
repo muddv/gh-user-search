@@ -37,7 +37,7 @@ type GHUserDetails = {
 
 export type GHUserWithDetails = GHUser & GHUserDetails;
 
-type SearchResults = {
+export type SearchResults = {
   users: GHUser[] | GHUserWithDetails[];
   error?: string;
 };

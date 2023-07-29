@@ -14,6 +14,8 @@ export async function sendRequest(
   ).catch((e) => {
     data = e.toString();
   });
+  if (res && !res.ok) data = res.text;
   if (!data) data = await res!.json();
+  console.log(data);
   return data;
 }

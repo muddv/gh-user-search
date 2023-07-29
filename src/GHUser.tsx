@@ -100,7 +100,7 @@ export function GHUser(props: GHUser) {
         setExpanded(!isExpanded);
         loadDetails();
       }}
-      className="m-2 text-slate-950  bg-slate-50 flex h-fit h-fit w-[35rem] cursor-pointer gap-5 rounded border-2 border-gray-900 p-2 hover:bg-slate-300"
+      className="m-2 flex  h-fit h-fit w-[35rem] cursor-pointer gap-5 rounded border-2 border-gray-900 bg-slate-50 p-2 text-slate-950 hover:bg-slate-300"
     >
       <img
         alt={`${props.login}'s avatar`}
@@ -116,9 +116,7 @@ export function GHUser(props: GHUser) {
         >
           {props.login}
         </a>
-        <div className="">
-          {details && details.name && details.name}
-        </div>
+        <div className="">{details && details.name && details.name}</div>
         {isLoading && <div>Loading...</div>}
 
         {isExpanded && !isLoading && !errored && (
