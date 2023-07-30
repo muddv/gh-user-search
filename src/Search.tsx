@@ -35,12 +35,12 @@ function SortDropdown(props: SortDropdownProps) {
   }
   document.addEventListener("mousedown", closeSortDropdown);
   return (
-    <div ref={sortDropdown} className="m-2 md:ml-32 mr-20">
+    <div ref={sortDropdown} className="m-2 mr-20 md:ml-32">
       <span className="hidden md:block">
         Sort by repositories,
-        <span className="ml-1 border-2 border-slate-900 w-fit md:fixed">
+        <span className="ml-1 w-fit border-2 border-slate-900 md:fixed">
           <button
-            className="hidden w-[120px] w-32 md:flex"
+            className="hidden w-32 w-[120px] md:flex"
             onClick={() => {
               setOpened(!isOpened);
             }}
@@ -124,17 +124,17 @@ export function Search() {
     handleSearch();
   }
 
-    return (
+  return (
     <div className="">
       <form
-        className="fixed md:grid md:grid-rows-2 flex w-screen justify-center rounded-b-lg h-20 md:h-28 bg-slate-500 text-neutral-50 shadow-xl pt-4"
+        className="fixed flex h-20 w-screen justify-center rounded-b-lg bg-slate-500 pt-4 text-neutral-50 shadow-xl md:grid md:h-28 md:grid-rows-2"
         onSubmit={(e) => e.preventDefault()}
       >
         <span className="flex md:-ml-[90px]">
-          <label className="mt-2 mr-4" htmlFor="username">
+          <label className="mr-4 mt-2" htmlFor="username">
             Username
           </label>
-          <span className="flex h-[45px] md:w-[35rem] rounded-lg border-2 border-neutral-50 bg-neutral-50 p-2 text-slate-950 focus:shadow-md">
+          <span className="flex h-[45px] rounded-lg border-2 border-neutral-50 bg-neutral-50 p-2 text-slate-950 focus:shadow-md md:w-[35rem]">
             <input
               type="text"
               name="username"
@@ -142,14 +142,14 @@ export function Search() {
               onChange={(e) => {
                 debounceHandle(e.target.value);
               }}
-              className="md:w-[34rem] bg-neutral-50"
+              className="bg-neutral-50 md:w-[34rem]"
             />
             <button className="ml-auto" onClick={() => debounceHandle()}>
               <img width="25" height="25" alt="search" src={search} />
             </button>
           </span>
-          </span>
-            <SortDropdown callback={changeSortOrder} />
+        </span>
+        <SortDropdown callback={changeSortOrder} />
       </form>
     </div>
   );

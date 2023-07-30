@@ -4,7 +4,7 @@ export async function sendRequest(
   desc?: boolean,
   perPage?: number,
 ) {
-  // TODO trim username
+  userName = userName.trim()
   const order = desc ? "desc" : "asc";
   if (!page) page = 1;
   if (!perPage) perPage = 30;
@@ -14,9 +14,8 @@ export async function sendRequest(
   ).catch((e) => {
     data = e.toString();
   });
-  if (res && !res.ok) data = res.text;
+  if (res && res.status === 422) data = "Invalid username";
+  else if (res && !res.ok) data = "Something went wrong, try again later";
   if (!data) data = await res!.json();
-  if (typeof data === "function")
-    data = "Something went wrong, try again later";
   return data;
 }
