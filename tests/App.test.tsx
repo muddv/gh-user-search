@@ -61,15 +61,15 @@ describe("SearchResults communicates state", () => {
   });
 
   it('shows "no users found" message', () => {
+    currentSearchParams.query = "test"
     customRender(<SearchResultsNoneFound />);
     expect(screen.getByText("No users matching your request"));
+    currentSearchParams.query = ""
   });
 });
 
 describe("Search uses debounce", () => {
   it("waits before sending request", () => {
-    // ignore json type validation for now
-    //@ts-ignore
     customRender(<Search />);
     const input = screen.getByPlaceholderText("panda_coder");
     userEvent.type(input, "test");
