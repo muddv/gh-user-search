@@ -143,6 +143,7 @@ export function Search() {
                 debounceHandle(e.target.value);
               }}
               className="bg-neutral-50 md:w-[34rem]"
+              id="username"
             />
             <button className="ml-auto" onClick={() => debounceHandle()}>
               <img width="25" height="25" alt="search" src={search} />

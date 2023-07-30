@@ -1,4 +1,4 @@
-let lastCall: number, lastCallTimer: number;
+let lastCall: number, lastCallTimer: any;
 export function debounce(callee: Function, timeoutMs: number) {
   return function perfrom(...args: unknown[]) {
     const prevCall = lastCall;

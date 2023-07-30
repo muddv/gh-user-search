@@ -25,7 +25,7 @@ export async function useSearch(
     setSearchRes({ users: [], error: undefined });
     setLoading(false);
     setPages && setPages(0);
-    setCurrentPage && setCurrentPage(searchParams.page)
+    setCurrentPage && setCurrentPage(searchParams.page);
     return;
   }
   const data = await sendRequest(
@@ -34,11 +34,11 @@ export async function useSearch(
     searchParams.desc,
   );
   if (typeof data === "string") {
-    console.log('ererere')
+    console.log("ererere");
     setSearchRes({ users: [], error: data });
     setLoading(false);
     setPages && setPages(0);
-    setCurrentPage && setCurrentPage(searchParams.page)
+    setCurrentPage && setCurrentPage(searchParams.page);
     return;
   }
   if (!data.items) {
@@ -48,14 +48,14 @@ export async function useSearch(
     });
     setLoading(false);
     setPages && setPages(0);
-    setCurrentPage && setCurrentPage(searchParams.page)
+    setCurrentPage && setCurrentPage(searchParams.page);
     return;
   }
   if (!data.items[0]) {
     setSearchRes({ users: [], error: "No users match your request" });
     setLoading(false);
     setPages && setPages(0);
-    setCurrentPage && setCurrentPage(searchParams.page)
+    setCurrentPage && setCurrentPage(searchParams.page);
     return;
   }
   setSearchRes({ users: data.items, error: undefined });

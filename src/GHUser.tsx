@@ -2,7 +2,6 @@ import { useState } from "react";
 
 import type { GHUser, GHUserWithDetails } from "../stores/searchRes";
 import { getDetails } from "../lib/getDetails";
-import data from "../dets.json";
 import email from "./assets/mail.svg";
 import followers from "./assets/followers.svg";
 import company from "./assets/company.svg";
@@ -10,15 +9,7 @@ import location from "./assets/location.svg";
 import repos from "./assets/repos.svg";
 import github from "./assets/github.svg";
 
-function getDets() {
-  return new Promise((res) => {
-    setTimeout(() => {
-      res(data);
-    }, 1000);
-  });
-}
-
-function Details(props: GHUserWithDetails) {
+export function Details(props: GHUserWithDetails) {
   return (
     <div className="h-fit text-slate-900">
       <div className="grid w-fit grid-cols-2 gap-x-5 gap-y-1">
@@ -60,7 +51,7 @@ type DetailsErrorProps = {
 
 function DetailsError(props: DetailsErrorProps) {
   return (
-    <div className="text-rose-400">
+    <div className="text-red-400">
       Error getting details,{" "}
       <button
         onClick={() => {
@@ -83,13 +74,11 @@ export function GHUser(props: GHUser) {
     if (isExpanded) return;
     setLoading(true);
     const dets = await getDetails(props.url);
-    //let dets = await getDets()
     setLoading(false);
     if (typeof dets === "string") {
       setErrored(true);
     }
     setDetails(dets);
-    //setDetails({ ...props, ...dets as any })
   }
   return (
     <li

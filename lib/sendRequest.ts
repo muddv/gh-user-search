@@ -4,7 +4,7 @@ export async function sendRequest(
   desc?: boolean,
   perPage?: number,
 ) {
-  userName = userName.trim()
+  userName = userName.trim();
   const order = desc ? "desc" : "asc";
   if (!page) page = 1;
   if (!perPage) perPage = 30;
