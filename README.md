@@ -1,7 +1,7 @@
 # [GitHub user search](https://gh-user-search-eta.vercel.app/)
 
 Поиск пользователей GitHub.
-[Ссылка на деплой](https://gh-user-search-eta.vercel.app/)
+[Ссылка на деплой](https://gh-user-search-eta.vercel.app/).
 
 
 ## Запуск проекта
