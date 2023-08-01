@@ -61,10 +61,10 @@ describe("SearchResults communicates state", () => {
   });
 
   it('shows "no users found" message', () => {
-    currentSearchParams.query = "test"
+    currentSearchParams.query = "test";
     customRender(<SearchResultsNoneFound />);
     expect(screen.getByText("No users matching your request"));
-    currentSearchParams.query = ""
+    currentSearchParams.query = "";
   });
 });
 

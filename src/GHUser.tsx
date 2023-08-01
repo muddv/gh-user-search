@@ -64,7 +64,12 @@ function DetailsError(props: DetailsErrorProps) {
   );
 }
 
-export function GHUser(props: GHUser) {
+type GHUserProps = {
+  user: GHUser;
+  tabIndex: number;
+};
+
+export function GHUser(props: GHUserProps) {
   const [isExpanded, setExpanded] = useState(false);
   const [details, setDetails] = useState<GHUserWithDetails | undefined>();
   const [isLoading, setLoading] = useState(false);
@@ -73,7 +78,7 @@ export function GHUser(props: GHUser) {
     if (errored) setErrored(false);
     if (isExpanded) return;
     setLoading(true);
-    const dets = await getDetails(props.url);
+    const dets = await getDetails(props.user.url);
     setLoading(false);
     if (typeof dets === "string") {
       setErrored(true);
@@ -82,31 +87,40 @@ export function GHUser(props: GHUser) {
   }
   return (
     <li
+      tabIndex={props.tabIndex + props.tabIndex}
+      onKeyDown={(e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          setExpanded(!isExpanded);
+          loadDetails();
+        }
+      }}
       onClick={() => {
         setExpanded(!isExpanded);
         loadDetails();
       }}
-      className="my-2 flex h-fit w-[35rem] cursor-pointer gap-5 rounded border-2 border-gray-900 bg-slate-50 p-2 text-slate-950 hover:bg-slate-300"
+      className="my-2 flex h-fit w-[35rem] cursor-pointer gap-5 rounded border-2 border-gray-900 bg-slate-50 p-2 text-slate-950 hover:bg-slate-300 focus-visible:outline-2"
     >
       <img
-        alt={`${props.login}'s avatar`}
+        alt={`${props.user.login}'s avatar`}
         height="25"
         width="25"
         className="h-10 w-10 rounded-full"
-        src={props.avatar_url}
+        src={props.user.avatar_url}
       />
       <div className="flex flex-col">
         <div className="flex w-[30rem] justify-between">
           <div
             className={`w-fit text-xl underline ${!isExpanded && "truncate"}`}
           >
-            {props.login}
+            {props.user.login}
           </div>
           <a
+            tabIndex={props.tabIndex + props.tabIndex + 1}
             onClick={(e) => {
               e.stopPropagation();
             }}
-            href={props.html_url}
+            href={props.user.html_url}
             className="flex h-10 items-center rounded-xl border-2 border-slate-500 bg-slate-500 px-2 text-neutral-50 hover:border-slate-800 hover:bg-slate-800"
           >
             <img className="mr-1" src={github} alt="github logo" />
