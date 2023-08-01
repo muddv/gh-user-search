@@ -7,13 +7,13 @@ type SearchParams = {
   desc: boolean;
 };
 
-export let currentSearchParams: SearchParams = {
+export const currentSearchParams: SearchParams = {
   query: "",
   page: 1,
   desc: true,
 };
 
-export async function useSearch(
+export async function performSearch(
   searchParams: SearchParams,
   setLoading: (b: boolean) => void,
   setSearchRes: (res: SearchResults) => void,
@@ -60,7 +60,7 @@ export async function useSearch(
   }
   setSearchRes({ users: data.items, error: undefined });
   setCurrentPage && setCurrentPage(searchParams.page);
-  let pages =
+  const pages =
     data.total_count > 1000
       ? Math.ceil(1000 / 30)
       : Math.ceil(data.total_count / 30);

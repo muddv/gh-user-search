@@ -4,7 +4,7 @@ import { useSetAtom } from "jotai";
 import { isLoadingAtom } from "../stores/isLoading";
 import { searchResAtom } from "../stores/searchRes";
 import { pagesAtom } from "../stores/pages";
-import { useSearch, currentSearchParams } from "../lib/useSearch";
+import { performSearch, currentSearchParams } from "../lib/useSearch";
 import { debounce } from "../lib/debounce";
 import down from "./assets/down.svg";
 import { currentPageAtom } from "../stores/pages";
@@ -27,6 +27,7 @@ function SortDropdown(props: SortDropdownProps) {
     if (
       sortDropdown.current &&
       isOpened &&
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       //@ts-ignore
       !sortDropdown.current.contains(e.target)
     ) {
@@ -40,7 +41,7 @@ function SortDropdown(props: SortDropdownProps) {
         Sort by repositories,
         <span className="ml-1 w-fit border-2 border-slate-900 md:fixed">
           <button
-            className="hidden w-32 w-[120px] md:flex"
+            className="hidden w-32 md:flex"
             onClick={() => {
               setOpened(!isOpened);
             }}
@@ -54,7 +55,7 @@ function SortDropdown(props: SortDropdownProps) {
           </button>
         </span>
       </span>
-      <button className="mx-auto md:hidden w-10 h-10">
+      <button className="mx-auto h-10 w-10 md:hidden">
         <img
           className="mb-10"
           width="25"
@@ -68,7 +69,7 @@ function SortDropdown(props: SortDropdownProps) {
       <ul
         className={
           isOpened
-            ? "fixed bg-slate-800 text-slate-50 lg:ml-[155px] lg:w-[120px]"
+            ? "fixed bg-slate-800 -ml-[40px] w-[100px] top-16 text-slate-50 lg:ml-[157px] lg:w-[120px] md:top-[101px]"
             : "hidden"
         }
       >
@@ -111,7 +112,7 @@ export function Search() {
   async function handleSearch(query?: string) {
     currentSearchParams.page = 1;
     query && (currentSearchParams.query = query);
-    useSearch(
+    performSearch(
       currentSearchParams,
       setLoading,
       setSearchRes,
@@ -128,13 +129,13 @@ export function Search() {
   }
 
   return (
-    <div className="">
+    <div>
       <form
         className="max-w-screen fixed flex h-20 w-screen justify-center rounded-b-lg bg-slate-500 pt-4 text-neutral-50 shadow-xl md:grid md:h-28 md:grid-rows-2"
         onSubmit={(e) => e.preventDefault()}
       >
         <span className="flex md:-ml-[90px]">
-          <label className="ml-10 mr-1 mt-2 md:mr-2" htmlFor="username">
+          <label className="ml-20 mr-1 mt-2 md:mr-2" htmlFor="username">
             Username
           </label>
           <span className="flex h-[45px] rounded-lg border-2 border-neutral-50 bg-neutral-50 p-2 text-slate-950 focus:shadow-md md:w-[35rem]">

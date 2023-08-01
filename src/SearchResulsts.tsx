@@ -9,7 +9,7 @@ export function SearchResults() {
   const searchResults = useAtomValue(searchResAtom);
   const isLoading = useAtomValue(isLoadingAtom);
   return (
-    <div className="flex min-h-screen min-h-screen flex-col items-center bg-gray-50 text-slate-700">
+    <div className="flex min-h-screen flex-col items-center bg-gray-50 text-slate-700">
       {searchResults.users[0] && !isLoading && (
         <ul className="mt-[110px] flex h-full flex-col items-center">
           {searchResults.users.map((u, i) => (

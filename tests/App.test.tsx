@@ -12,6 +12,7 @@ import { searchResAtom } from "../stores/searchRes";
 import { currentSearchParams } from "../lib/useSearch";
 
 type TestProviderProps = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   initialValues: any;
   children: JSX.Element;
 };
