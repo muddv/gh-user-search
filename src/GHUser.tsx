@@ -99,7 +99,7 @@ export function GHUser(props: GHUserProps) {
         setExpanded(!isExpanded);
         loadDetails();
       }}
-      className="my-2 flex h-fit w-[375px] cursor-pointer gap-5 rounded border-2 border-gray-900 bg-slate-50 p-2 text-slate-950 hover:bg-slate-300 focus-visible:outline-2 md:w-[35rem]"
+      className="my-2 flex h-fit cursor-pointer gap-5 rounded border-2 border-gray-900 bg-slate-50 p-2 text-slate-950 hover:bg-slate-300 focus-visible:outline-2 md:w-[35rem]"
     >
       <img
         alt={`${props.user.login}'s avatar`}
