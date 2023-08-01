@@ -99,7 +99,7 @@ export function GHUser(props: GHUserProps) {
         setExpanded(!isExpanded);
         loadDetails();
       }}
-      className="my-2 flex h-fit w-[35rem] cursor-pointer gap-5 rounded border-2 border-gray-900 bg-slate-50 p-2 text-slate-950 hover:bg-slate-300 focus-visible:outline-2"
+      className="my-2 flex h-fit w-[375px] cursor-pointer gap-5 rounded border-2 border-gray-900 bg-slate-50 p-2 text-slate-950 hover:bg-slate-300 focus-visible:outline-2 md:w-[35rem]"
     >
       <img
         alt={`${props.user.login}'s avatar`}
@@ -109,9 +109,11 @@ export function GHUser(props: GHUserProps) {
         src={props.user.avatar_url}
       />
       <div className="flex flex-col">
-        <div className="flex w-[30rem] justify-between">
+        <div className="flex justify-between">
           <div
-            className={`w-fit text-xl underline ${!isExpanded && "truncate"}`}
+            className={`w-[10rem] w-fit text-xl underline md:w-[25rem] ${
+              !isExpanded && "truncate"
+            }`}
           >
             {props.user.login}
           </div>

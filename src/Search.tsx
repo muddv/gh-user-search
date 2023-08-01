@@ -131,7 +131,7 @@ export function Search() {
         onSubmit={(e) => e.preventDefault()}
       >
         <span className="flex md:-ml-[90px]">
-          <label className="mr-4 mt-2" htmlFor="username">
+          <label className="mt-2 md:mr-4" htmlFor="username">
             Username
           </label>
           <span className="flex h-[45px] rounded-lg border-2 border-neutral-50 bg-neutral-50 p-2 text-slate-950 focus:shadow-md md:w-[35rem]">
