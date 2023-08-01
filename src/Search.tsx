@@ -54,8 +54,11 @@ function SortDropdown(props: SortDropdownProps) {
           </button>
         </span>
       </span>
-      <button className="md:hidden">
+      <button className="mx-auto md:hidden w-10 h-10">
         <img
+          className="mb-10"
+          width="25"
+          height="25"
           src={menu}
           onClick={() => {
             setOpened(!isOpened);
@@ -127,11 +130,11 @@ export function Search() {
   return (
     <div className="">
       <form
-        className="fixed flex h-20 w-screen justify-center rounded-b-lg bg-slate-500 pt-4 text-neutral-50 shadow-xl md:grid md:h-28 md:grid-rows-2"
+        className="max-w-screen fixed flex h-20 w-screen justify-center rounded-b-lg bg-slate-500 pt-4 text-neutral-50 shadow-xl md:grid md:h-28 md:grid-rows-2"
         onSubmit={(e) => e.preventDefault()}
       >
         <span className="flex md:-ml-[90px]">
-          <label className="mt-2 md:mr-4" htmlFor="username">
+          <label className="ml-10 mr-1 mt-2 md:mr-2" htmlFor="username">
             Username
           </label>
           <span className="flex h-[45px] rounded-lg border-2 border-neutral-50 bg-neutral-50 p-2 text-slate-950 focus:shadow-md md:w-[35rem]">
