@@ -69,7 +69,7 @@ function SortDropdown(props: SortDropdownProps) {
       <ul
         className={
           isOpened
-            ? "fixed bg-slate-800 -ml-[40px] w-[100px] top-16 text-slate-50 lg:ml-[157px] lg:w-[120px] md:top-[101px]"
+            ? "fixed bg-slate-800 -ml-[60px] w-[100px] top-16 text-slate-50 lg:ml-[157px] lg:w-[120px] md:top-[101px]"
             : "hidden"
         }
       >
@@ -135,7 +135,7 @@ export function Search() {
         onSubmit={(e) => e.preventDefault()}
       >
         <span className="flex md:-ml-[90px]">
-          <label className="ml-20 mr-1 mt-2 md:mr-2" htmlFor="username">
+          <label className="ml-24 mr-1 mt-2 md:mr-2" htmlFor="username">
             Username
           </label>
           <span className="flex h-[45px] rounded-lg border-2 border-neutral-50 bg-neutral-50 p-2 text-slate-950 focus:shadow-md md:w-[35rem]">
