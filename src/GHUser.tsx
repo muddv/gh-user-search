@@ -109,9 +109,9 @@ export function GHUser(props: GHUserProps) {
         src={props.user.avatar_url}
       />
       <div className="flex flex-col">
-        <div className="flex justify-between">
+        <div className="flex ">
           <div
-            className={`w-[10rem] w-fit text-xl underline md:w-[25rem] ${
+            className={`w-[10rem] text-xl underline md:w-[25rem] ${
               !isExpanded && "truncate"
             }`}
           >
